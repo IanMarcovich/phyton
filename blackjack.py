@@ -1,5 +1,4 @@
 
-# aca definimos la funcion del mazo que serian los valores de las cartas y los tipos de palos 
 # Importamos random para que las cartas sean aleatorias 
 # Y usamos el .shuffle para que el orden de nuestro mazo sea aleatorio
 import random
@@ -13,7 +12,7 @@ def mazo_completo():
 
 
 # Aca se define el valor de la mano es decir que las cartas que sean J,Q,K van a valer 10 
-# y el As osea A va a valer 11(tambien puede valer 1 si es lo que conviene en esa mano es decir si yo tengo en mi mano una J y un 9 y me sale un A el valor puede ser 1) 
+# y el As osea A va a valer 11(tambien puede valer 1 si es lo que conviene en esa mano es decir si yo tengo en mi mano una J y un 9 (10+9 = 19) y me sale un A que vale 11 el valor va ser 1
 # y despues las demas cartas su valor es el mismo (2 al 10)
 def valor_de_mano (mano):
     valor = 0
@@ -31,7 +30,6 @@ def valor_de_mano (mano):
         ases -= 1
     return valor
 
-# Aca definimos mostrar mano osea las cartas, (en el BlackJack el crupier tiene una carta que recibe boca abajo en la ronda inicial
 def mostrar_la_mano (mano, carta_oculta =False ):
     if carta_oculta:
         print ("[CARTA OCULTA]]", mano [1])
@@ -40,7 +38,6 @@ def mostrar_la_mano (mano, carta_oculta =False ):
             print(f"{carta[0]} de {carta [1]}")
 
 #Aca definimos la ronda (usamos el .pop para eliminar y devolver mazo)
-# Despues usamos el while para crear la apuesta
 def jugar_ronda(fichas):
     mazo = mazo_completo()
     jugador = [mazo.pop(), mazo.pop()]
@@ -65,7 +62,6 @@ def jugar_ronda(fichas):
     print ("\nCartas del crupier: ")
     mostrar_la_mano (crupier, carta_oculta=True)
 
-# en este while es turno del jugador
     while valor_de_mano(jugador) < 21:
         accion = input("\nPedir otra carta (P) o Quedarte (Q)").lower()
         if accion == 'p':
@@ -85,7 +81,6 @@ def jugar_ronda(fichas):
     print ("\nTurno del crupier: ")
     mostrar_la_mano(crupier)
     
-# Este while es el crupier
     while valor_de_mano(crupier) < 17:
         crupier.append(mazo.pop())
         print ("\n El crupier agarra otra carta:")
@@ -107,8 +102,6 @@ def jugar_ronda(fichas):
         print ("EMPATE")
         return fichas
     
-    
-# Aca es donde elejimos nuestra apuesta
 def blackjack():
         fichas = 1000
         print ("\n🎰 Bienvenido al Blackjack")
@@ -128,7 +121,6 @@ def blackjack():
             print (f"\nTE RETIRASTE CON {fichas} FICHAS")
             print (f"\n     GRACIAS POR JUGAR")
 
-#  ACA TENEMOS LAS REGLAS (SE IMRPIME EN PANTALLA CUANDO ELEJIMOS LA OPCION DE IR A REGLAS)
 def reglas ():
     print ("\n Reglas del blackjack")
     print ("\n EL objetivo es llegar lo mas cerca posible al 21")
@@ -140,7 +132,7 @@ def reglas ():
     print ("\n Si estas mas cerca del 21 que grupier ganas")
     print ("\n Si ambos tienen lo mismo hay empate")
     print ("\n Si te pasas de 21 perdes")
-# Se usa el true en un while para que se ejecute el codigo al elegir alguna de las opciones (es un booleano)
+
 def menu():
     while True:
         print ("\nEstas en el menu principal")
